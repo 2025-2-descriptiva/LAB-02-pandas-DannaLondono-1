@@ -15,7 +15,7 @@ def pregunta_02():
 
     """
     import pandas as pd
-    df = pd.read_csv("/files/input/tbl0.tsv", delimiter='\t') 
+    df = pd.read_csv("files/input/tbl0.tsv", delimiter='\t') 
     cant_columnas= df.shape[1]
     return cant_columnas
 

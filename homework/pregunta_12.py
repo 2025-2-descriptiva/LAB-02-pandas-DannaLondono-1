@@ -24,8 +24,18 @@ def pregunta_12():
     """
     import pandas as pd
     df = pd.read_csv("files/input/tbl2.tsv", delimiter='\t')
-    df['c5'] = df['c5a'] + ':' + df['c5b'].astype(str)     
-    df_grouped = df.groupby('c0')['c5'].apply(lambda x: ','.join(map(str, sorted(x)))).reset_index()
-    df_grouped = df_grouped.set_index('c0')
+
+    # crear columna combinada c5
+    df['c5'] = df['c5a'] + ':' + df['c5b'].astype(str)
+
+    # agrupar por c0 y unir valores de c5 ordenados alfabéticamente
+    df_grouped = (
+        df.groupby('c0')['c5']
+          .apply(lambda x: ','.join(sorted(x)))
+          .reset_index()
+    )
+
+    df_grouped = df_grouped[['c0', 'c5']]
+
     return df_grouped
-print(pregunta_12())     
+print(pregunta_12())

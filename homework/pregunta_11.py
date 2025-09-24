@@ -23,8 +23,16 @@ def pregunta_11():
     39   39    a,d,f
     """
     import pandas as pd
+
     df = pd.read_csv("files/input/tbl1.tsv", delimiter='\t')
-    df_grouped = df.groupby('c0')['c4'].apply(lambda x: ','.join(map(str, sorted(x)))).reset_index()
-    df_grouped = df_grouped.set_index('c4')
+
+    # agrupar por c0, obtener valores únicos de c4, ordenarlos y unir por coma
+    df_grouped = (
+        df.groupby('c0')['c4']
+          .apply(lambda x: ','.join(sorted(x.astype(str).unique())))
+          .reset_index()
+          )
+    df_grouped = df_grouped[['c0', 'c4']]
+
     return df_grouped
 print(pregunta_11())
