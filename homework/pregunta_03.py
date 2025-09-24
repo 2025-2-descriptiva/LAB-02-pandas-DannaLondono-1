@@ -21,3 +21,10 @@ def pregunta_03():
     Name: count, dtype: int64
 
     """
+    import pandas as pd
+    df = pd.read_csv("files/input/tbl0.tsv", delimiter='\t')  
+    
+    registros_por_letra= df['c1'].value_counts().sort_index()
+    return registros_por_letra
+print(pregunta_03())
+

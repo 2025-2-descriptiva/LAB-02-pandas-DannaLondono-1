@@ -7,6 +7,7 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_01():
+
     """
     ¿Cuál es la cantidad de filas en la tabla `tbl0.tsv`?
 
@@ -14,3 +15,12 @@ def pregunta_01():
     40
 
     """
+
+    import pandas as pd
+
+    
+    df = pd.read_csv("files/input/tbl0.tsv", delimiter='\t')  
+    cant_filas= df.shape[0]
+    return cant_filas
+
+print(pregunta_01())
